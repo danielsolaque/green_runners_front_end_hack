@@ -1,38 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import "./New.css";
-
+import axios from "axios";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+const API = process.env.REACT_APP_BASE_URL;
 
-// id SERIAL PRIMARY KEY,
-//     name TEXT NOT NULL,
-//     electric INT,
-//     gas INT,
-//     oil INT,
-//     car_mileage INT,
-//     flights INT,
-//     recycle_newspaper BOOLEAN,
-//     recycle_aluminum BOOLEAN
 export default function New() {
-  // const navigate = useNavigate();
   const [totalScore, setTotalScore] = useState(0);
   const [newScore, setNewScore] = useState({
     name: "",
-    electric: "",
-    gas: "",
-    oil: "",
-    car_mileage: "",
-    short_flights: "",
-    long_flights: "",
-    recycle_newspaper: "",
-    recycle_aluminum: "",
     city: "",
+    electric: 0,
+    gas: 0,
+    oil: 0,
+    car_mileage: 0,
+    short_flights: 0,
+    long_flights: 0,
+    recycle_newspaper: false,
+    recycle_aluminium: false,
   });
 
-  // {
-  //   name: ,
-  //   city: ,
-  //   total: ,
-  // }
+  const navigate = useNavigate();
 
   function handleInputChange(event) {
     setNewScore({
@@ -42,6 +29,7 @@ export default function New() {
   }
 
   function handleCheckboxChange(event) {
+    event.preventDefault();
     setNewScore({
       ...newScore,
       [event.target.id]: event.target.checked,
@@ -52,49 +40,29 @@ export default function New() {
     event.preventDefault();
     let total = 0;
 
-    const computedElectric = Number(newScore.electric) * 105;
-    const computedGas = Number(newScore.gas) * 105;
-    const computedOil = Number(newScore.oil) * 113;
-    const computedCarMileage = Number(newScore.car_mileage) * 79;
-    const computedShortFlights = Number(newScore.short_flights) * 1100;
-    const computedLongFlights = Number(newScore.long_flights) * 4400;
+    total +=
+      newScore.electric * 105 +
+      newScore.gas * 105 +
+      newScore.oil * 113 +
+      newScore.car_mileage * 0.79 +
+      newScore.short_flights * 1100 +
+      newScore.long_flights * 4400;
 
     if (!newScore.recycle_newspaper) {
       total += 184;
     }
 
-    if (!newScore.recycle_aluminum) {
+    if (!newScore.recycle_aluminium) {
       total += 166;
     }
 
-    total +=
-      computedElectric +
-      computedGas +
-      computedOil +
-      computedCarMileage +
-      computedLongFlights +
-      computedShortFlights;
-
     setTotalScore(total);
-    // const acumulatedScore = {
-    //   ...newScore,
-    //   newScore,
-    // };
-
-    // createNewScore(newScore).then((newScoreEnd) => {
-    //   navigate("/scores");
-    // });
   }
 
   function handleShareScore() {
     console.log("Sending data to backend");
-    // Implement backend communication
-    // POST data from newScore to backend
-
-    // fetch(myserver, {
-    //   method: "POST",
-    //   body: JSON.stringify()
-    // })
+    console.log(newScore);
+    axios.post(`${API}greenscores`, newScore).then(() => navigate("/scores"));
   }
   return (
     <div>
@@ -122,16 +90,6 @@ export default function New() {
           />
         </div>
 
-        {/* <div className="form-field">
-          <label htmlFor="category">Today's Date:</label>
-          <input
-            type="text"
-            id="category"
-            value={newScore.category}
-            onChange={handleInputChange}
-          />
-        </div> */}
-
         <h2>Please answer the following questions:</h2>
         <div className="form-field">
           <label htmlFor="electric">
@@ -156,20 +114,29 @@ export default function New() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="carMileage">
-            How much was your car mileage this year?
+          <label htmlFor="oil">How much was your oil bill this month?</label>
+          <input
+            type="number"
+            id="oil"
+            value={newScore.oil}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="car_mileage">
+            How many total miles did you drive this year?
           </label>
           <input
             type="number"
-            id="carMileage"
-            value={newScore.carMileage}
+            id="car_mileage"
+            value={newScore.car_mileage}
             onChange={handleInputChange}
           />
         </div>
         <div className="form-field">
           <label htmlFor="short_flights">
-            How many the number of short flights you’ve taken in the past year?
-            (4 hours or less)
+            How many flights have you taken in the past year that are less than 4 hours?
           </label>
           <input
             type="number"
@@ -181,8 +148,7 @@ export default function New() {
 
         <div className="form-field">
           <label htmlFor="long_flights">
-            How many the number of long flights you’ve taken in the past year?
-            (4 hours or more)
+          How many flights have you taken in the past year that are more than 4 hours?
           </label>
           <input
             type="number"
@@ -193,24 +159,27 @@ export default function New() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="recycle_newspaper">Have you recycle newspaper?</label>
+          <label htmlFor="recycle_newspaper">Do you recycle newspaper?</label>
+          
           <input
             type="checkbox"
             id="recycle_newspaper"
             value={newScore.recycle_newspaper}
             onChange={handleCheckboxChange}
           />
+          <span className="yes">Yes I Do!</span> 
         </div>
         <div className="form-field">
           <label htmlFor="recycle_aluminium">
-            Have you recycle aluminum and tin?
+            Do you recycle aluminium or tin?
           </label>
           <input
             type="checkbox"
             id="recycle_aluminium"
-            value={newScore.recycle_aluminum}
+            value={newScore.recycle_aluminium}
             onChange={handleCheckboxChange}
           />
+          <span className="yes">Yes I Do!</span> 
         </div>
 
         <button type="submit">Calculate my footprint</button>

@@ -16,7 +16,7 @@ export default function NavBar() {
         <nav>
           <ul>
             <li>
-              <Link to="/scores">See who is wining!</Link>
+              <Link to="/scores">See who is winning!</Link>
             </li>
             <li>
               <Link to="/scores/new">I want my green score!</Link>
