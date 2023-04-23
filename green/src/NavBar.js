@@ -5,12 +5,14 @@ export default function NavBar() {
   return (
     <div>
       <header className="navbar">
+      <img src="/greenfootLogo.jpg" alt="logo" height="100px" width="100px" />
         <article>
           <h1>
             <Link to="/">
-              <span>Green Runners App</span>
+              <span>Welcome to Green Runners!</span>
             </Link>
           </h1>
+        
         </article>
 
         <nav>

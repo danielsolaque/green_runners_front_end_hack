@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import "./ScoresList.css";
 import { useEffect, useState } from "react";
 import ScoreCard from "./ScoreCard";
@@ -8,7 +7,6 @@ const API = process.env.REACT_APP_BASE_URL;
 
 export default function ScoresList() {
   const [Scores, setScores] = useState([]);
-  // const { id } = useParams();
 
   function handleScore(input) {
     let accumulator = 0;
@@ -40,12 +38,17 @@ export default function ScoresList() {
     });
   }, []);
 
-  console.log(Scores);
-
   return (
-    <div>
-      {Scores.map((score) => {
-        return <ScoreCard score={handleScore(score)} key={score.id} name={score.name}/>;
+    <div className="score-list">
+      {Scores.map((score, index) => {
+        return (
+          <ScoreCard
+            score={handleScore(score)}
+            key={score.id}
+            name={score.name}
+            count={index + 1}
+          />
+        );
       })}
     </div>
   );

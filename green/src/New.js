@@ -227,3 +227,6 @@ export default function New() {
 // Add 166 if you do NOT recycle aluminum and tin
 
 // Add 1-8 together for your total carbon footprint
+
+// GOALS : 1. powerPoint PResentation (slides), 2.CSS CSS CSS 3. About 4. tips/form css
+          

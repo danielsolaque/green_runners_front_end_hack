@@ -1,58 +1,73 @@
 .navbar {
-    align-items: center;
-    background: #033f5b;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 12px 16px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  align-items: center;
+  background: #033f5b;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 12px 16px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.navbar span {
+  margin-left: 30px;
+}
+
+.navbar img {
+  border-radius: 50%;
+}
+
+.navbar img:hover {
+ 
 }
 
 .navbar h1 {
-    height: auto;
-    margin: 0;
-    font-size: 36px;
+  height: auto;
+  margin: 0;
+  font-size: 36px;
 }
 
-.navbar h1 span {
-    font-weight: bold;
+.navbar span:hover {
+  color: rgb(97, 158, 4);
 }
 
 .navbar h1 a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .navbar ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .navbar ul li {
-    display: inline-block;
-    font-family: var(--primary-font);
-    font-size: 18px;
-    padding: 0 25px;
+  display: inline-block;
+  font-family: var(--primary-font);
+  font-size: 18px;
+  padding: 0 25px;
 }
 
 .navbar ul li a {
-    color: white;
-    font-weight: 500;
-    padding-bottom: 5px;
-    text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding-bottom: 5px;
+  text-decoration: none;
 }
 
 .navbar ul li a:hover {
-    border-bottom: 2px solid;
+  border-color: rgb(97, 158, 4);
+  border-bottom: 2px solid;
+  color: rgb(97, 158, 4);
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        gap: 12px;
-        flex-direction: column;
-    }
+  .navbar {
+    gap: 12px;
+    flex-direction: column;
+  }
 
-    .navbar h1 {
-        text-align: center;
-    }
+  .navbar h1 {
+    text-align: center;
+  }
 }

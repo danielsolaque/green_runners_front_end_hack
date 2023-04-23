@@ -1,0 +1,15 @@
+.score-list {
+  text-align: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px; /* optional */
+  }
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,4 +1,18 @@
-.score {
-    margin:auto;
-    background-color: rgb(43, 77, 103);
-}
+.regular{
+    background-color: #ccc;
+    padding: 10px;
+  }
+
+  .winner {
+    background-color: #34c713;
+    padding: 10px;
+  }
+
+  .second {
+    background-color: rgb(122, 113, 25);
+  }
+
+  .third {
+    background-color:rgb(165, 99, 48);
+  }
+  
